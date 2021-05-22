@@ -69,41 +69,6 @@ public fun JsonElement.decompressElementWithKvon(baseElement: JsonElement? = nul
             fold(baseElement) { previous, element ->
                 element.decompressElementWithKvon(previous).also(this::add)
             }
-
-/*            fold(previous) { previous, element ->
-                when (element) {
-                    is JsonObject -> {
-                        if (previous == null) {
-                            add(element)
-                            return@fold element
-                        } else {
-                            val reinterlaced = buildJsonObject {
-//                                val withoutRemoved = element.filterValues { value -> value !is JsonPrimitive || !value.isString || value.content != KVON_MISSING }
-//                                val changedKeys = withoutRemoved.filter { (key, value) -> previous[key] != value }
-//                                val missingKeys = previous.keys.filterNot(element::containsKey)
-                                val newKeys = element.filterKeys { it !in previous }
-
-                                previous.forEach { (key, value) ->
-                                    val newValue = element[key]
-
-                                    if (newValue !is JsonPrimitive || newValue.contentOrNull != Kvon.KVON_MISSING)
-                                        put(key, (newValue ?: value).compressElementWithKvon())
-                                }
-
-                                newKeys.forEach { (key, value) -> put(key, value.compressElementWithKvon()) }
-                            }
-
-                            add(reinterlaced)
-
-                            return@fold reinterlaced
-                        }
-                    }
-
-                    else -> add(element)
-                }
-
-                previous
-            }*/
         }
         is JsonObject -> {
             val previous = baseElement as? JsonObject
@@ -120,8 +85,6 @@ public fun JsonElement.decompressElementWithKvon(baseElement: JsonElement? = nul
 
                 newKeys.forEach { (key, value) -> put(key, value.decompressElementWithKvon()) }
             }
-
-//            JsonObject(mapValues { (_, value) -> value.decompressElementWithKvon() })
         }
         else -> this
     }

@@ -3,6 +3,8 @@ plugins {
     kotlin("plugin.serialization") version "1.5.0"
 }
 
+apply(plugin = "maven-publish")
+
 group = "dev.brella"
 version = "1.0.0"
 
@@ -19,7 +21,7 @@ kotlin {
             useJUnit()
         }
     }
-    js(LEGACY) {
+    js(BOTH) {
         browser {
             commonWebpackConfig {
                 cssSupport.enabled = true
@@ -80,5 +82,11 @@ kotlin {
                 explicitApi()
             }
         }
+    }
+}
+
+configure<PublishingExtension> {
+    repositories {
+        maven(url = "${rootProject.buildDir}/repo")
     }
 }
