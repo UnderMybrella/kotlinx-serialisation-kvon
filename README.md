@@ -1,5 +1,7 @@
 # kotlinx-serialisation-kvon
 
+![kotlinx-serialisation-kvon](https://img.shields.io/maven-metadata/v?label=kotlinx-serialisation-kvon&metadataUrl=https%3A%2F%2Fmaven.brella.dev%2Fdev%2Fbrella%2Fkotlinx-serialisation-kvon%2Fmaven-metadata.xml)
+
 KVON (or **K**otlin **V**ersioned **O**bject **N**otation) is a made up serialisation format that's very close to JSON, but has implicit redundancy compression for collections of objects.
 
 ## Huh?
@@ -89,3 +91,17 @@ KVON provides a few different ways of utilising it:
 - `JsonElement#compressElementWithKvon` and `JsonElement#decompressElementWithKvon` are manual methods that allow you to pass a previous value in, accommodating streaming data from a file or socket.
 - `Json#encodeToKvonString` and `Json#decodeFromKvonString`, `Json#encodeToKvonElement` and `Json#decodeFromKvonElement` allow you to encode an object into KVON, or decode KVON into an object.
 - Any place you would pass a serialiser, you can pass `KvonSerialiser`
+
+Just add the dependency -
+
+Gradle
+
+```groovy
+repositories {
+  maven { url "https://maven.brella.dev" }
+}
+
+dependencies {
+  implementation "dev.brella:kotlinx-serialisation-kvon:1.0.0"
+}
+```
