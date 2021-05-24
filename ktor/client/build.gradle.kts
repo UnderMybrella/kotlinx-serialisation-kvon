@@ -46,7 +46,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-http:1.5.4")
+//                implementation("org.jetbrains.kotlinx:kotlinx-serialization:1.2.1")
+                api(project(":ktor:ktor-http-kvon"))
+
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
+                implementation(project(":kotlinx-serialisation-kvon"))
+
+                implementation("io.ktor:ktor-client-core:1.5.4")
+                implementation("io.ktor:ktor-client-serialization:1.5.4")
             }
         }
         val commonTest by getting {
@@ -55,7 +62,11 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        val jvmMain by getting
+        val jvmMain by getting {
+            dependencies {
+//                implementation("org.msgpack:jackson-dataformat-msgpack:0.8.24")
+            }
+        }
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))

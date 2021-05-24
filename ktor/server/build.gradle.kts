@@ -12,10 +12,10 @@ repositories {
 
 dependencies {
 //                implementation("org.jetbrains.kotlinx:kotlinx-serialization:1.2.1")
-    api(project(":ktor:http"))
+    api(project(":ktor:ktor-http-kvon"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
-    implementation(project(":kotlinx-serialisation"))
+    implementation(project(":kotlinx-serialisation-kvon"))
 
     implementation("io.ktor:ktor-server-core:1.5.4")
     implementation("io.ktor:ktor-serialization:1.5.4")
